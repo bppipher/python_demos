@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        
+            <title>How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer</title>
+        
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        
+            <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+        
+
+        
+        
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css">
+</noscript>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css">
+</noscript>
+
+<script defer="" src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/components/prism-core.min.js"></script>
+<script defer="" src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+        
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/news/assets/css/global-26e2f3cde9.css">
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/screen-52f6ea870e.css">
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/search-bar-124f5f949c.css">
+
+        
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/algolia/algoliasearch-3-33-0/algoliasearch.min.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/algolia/autocomplete-0-36-0/autocomplete.min.js"></script>
+
+        
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/dayjs.min.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/localizedFormat.min.js"></script>
+        <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/relativeTime.min.js"></script>
+
+        
+        
+            <script defer="" src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/locale/en.min.js"></script>
+        
+
+        
+        <script>let client,index;document.addEventListener("DOMContentLoaded",(()=>{client=algoliasearch("QMJYL5WYTI","89770b24481654192d7a5c402c6ad9a0"),index=client.initIndex("news")})),document.addEventListener("DOMContentLoaded",(()=>{const e=window.screen.width,t=window.screen.height,n=e>=767&&t>=768?8:5,o=document.getElementById("search-form"),s=document.getElementById("search-input"),a=document.getElementById("dropdown-container");let i,d,c;s.addEventListener("input",(e=>{i=e.target.value})),o.addEventListener("submit",(e=>{e.preventDefault(),function(){if(d=document.getElementsByClassName("aa-cursor")[0],d&&i){const e=d.querySelector("a").href;window.location.assign(e)}else!d&&i&&c&&window.location.assign(`https://www.freecodecamp.org/news/search?query=${i}`)}()}));const l=autocomplete("#search-input",{hint:!1,keyboardShortcuts:["s",191],openOnFocus:!0,appendTo:a,debug:!0},[{source:autocomplete.sources.hits(index,{hitsPerPage:n}),debounce:250,templates:{suggestion:e=>(c=!0,`\n            <a href="${e.url}">\n              <div class="algolia-result">\n                <span>${e._highlightResult.title.value}</span>\n              </div>\n            </a>\n          `),empty:()=>(c=!1,'\n            <div class="aa-suggestion footer-suggestion no-hits-footer">\n              <div class="algolia-result">\n                <span>\n                  No tutorials found\n                </span>\n              </div>\n            </div>\n          '),footer:e=>{if(!e.isEmpty)return`\n              <div class="aa-suggestion footer-suggestion">\n                <a id="algolia-footer-selector" href="https://www.freecodecamp.org/news/search?query=${i}">\n                  <div class="algolia-result algolia-footer">\n                    See all results for ${i}\n                  </div>\n                </a>\n              </div>\n            `}}}]).on("autocomplete:selected",((e,t,n,o)=>{d=t?t.url:`https://www.freecodecamp.org/news/search?query=${i}`,"click"!==o.selectionMethod&&"tabKey"!==o.selectionMethod&&c&&window.location.assign(d)}));document.addEventListener("click",(e=>{e.target!==s&&l.autocomplete.close()}))})),document.addEventListener("DOMContentLoaded",(()=>{dayjs.extend(dayjs_plugin_localizedFormat),dayjs.extend(dayjs_plugin_relativeTime),dayjs.locale("en")}));const isAuthenticated=document.cookie.split(";").some((e=>e.trim().startsWith("jwt_access_token="))),isDonor=document.cookie.split(";").some((e=>e.trim().startsWith("isDonor=true")));</script>
+
+        
+        
+    
+        <script data-ad-client="ca-pub-9482786369113753" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous" async=""></script>
+    
+
+
+        
+        
+        
+
+        
+        
+
+        <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico" type="image/png">
+        
+        
+            <link rel="canonical" href="https://www.freecodecamp.org/news/machine-learning-pipeline/">
+        
+        <meta name="referrer" content="no-referrer-when-downgrade">
+
+        
+
+        
+    <meta name="description" content="When you&#39;re working on a machine learning project, the most tedious steps are often data cleaning and preprocessing. Especially when you&#39;re working in a Jupyter Notebook, running code in many cells can be confusing. The Scikit-learn library has tools called Pipeline and ColumnTransformer that can really make your life easier.">
+
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer">
+    
+        <meta property="og:description" content="When you&#39;re working on a machine learning project, the most tedious steps are often data cleaning and preprocessing. Especially when you&#39;re working in a Jupyter Notebook, running code in many cells can be confusing. The Scikit-learn library has tools called Pipeline and ColumnTransformer that can really make your life easier.">
+    
+    <meta property="og:url" content="https://www.freecodecamp.org/news/machine-learning-pipeline/">
+    <meta property="og:image" content="https://www.freecodecamp.org/news/content/images/2022/09/Python-Power-BI-1.png">
+    <meta property="article:published_time" content="2022-09-08T16:31:20.000Z">
+    <meta property="article:modified_time" content="2022-09-08T16:31:20.000Z">
+    
+        <meta property="article:tag" content="Machine Learning">
+    
+        <meta property="article:tag" content="Scikit Learn">
+    
+        <meta property="article:tag" content="Python">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    
+        <meta property="article:author" content="yannawut.kimnaruk/">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer">
+    
+        <meta name="twitter:description" content="When you&#39;re working on a machine learning project, the most tedious steps are often data cleaning and preprocessing. Especially when you&#39;re working in a Jupyter Notebook, running code in many cells can be confusing. The Scikit-learn library has tools called Pipeline and ColumnTransformer that can really make your life easier.">
+    
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/machine-learning-pipeline/">
+    <meta name="twitter:image" content="https://www.freecodecamp.org/news/content/images/2022/09/Python-Power-BI-1.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Yannawut Kimnaruk">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Machine Learning, Scikit Learn, Python">
+    <meta name="twitter:site" content="@freecodecamp">
+    
+
+    <meta property="og:image:width" content="2245">
+    <meta property="og:image:height" content="1587">
+
+
+        
+    <script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"publisher": {
+		"@type": "Organization",
+		"name": "freeCodeCamp.org",
+		"url": "https://www.freecodecamp.org/news/",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg",
+			"width": 2100,
+			"height": 240
+		}
+	},
+	"image": {
+		"@type": "ImageObject",
+		"url": "https://www.freecodecamp.org/news/content/images/2022/09/Python-Power-BI-1.png",
+		"width": 2245,
+		"height": 1587
+	},
+	"url": "https://www.freecodecamp.org/news/machine-learning-pipeline/",
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": "https://www.freecodecamp.org/news/"
+	},
+	"datePublished": "2022-09-08T16:31:20.000Z",
+	"dateModified": "2022-09-08T16:31:20.000Z",
+	"keywords": "Machine Learning, Scikit Learn, Python",
+	"description": "When you&#x27;re working on a machine learning project, the most tedious steps are\noften data cleaning and preprocessing. Especially when you&#x27;re working in a\nJupyter Notebook, running code in many cells can be confusing.\n\nThe Scikit-learn library has tools called Pipeline and ColumnTransformer that\ncan really make your life easier. Instead of transforming the dataframe step by\nstep, the pipeline combines all transformation steps. You can get the same\nresult with less code. It&#x27;s also easier to underst",
+	"headline": "How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer",
+	"author": {
+		"@type": "Person",
+		"name": "Yannawut Kimnaruk",
+		"url": "https://www.freecodecamp.org/news/author/yannawut/",
+		"sameAs": [
+			"https://yannawut.medium.com/",
+			"https://www.facebook.com/yannawut.kimnaruk/"
+		],
+		"image": {
+			"@type": "ImageObject",
+			"url": "https://www.freecodecamp.org/news/content/images/2022/08/line_1213461312177860-1.jpg",
+			"width": 2000,
+			"height": 1333
+		}
+	}
+}</script>
+
+
+        <meta name="generator" content="Eleventy">
+        <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/news/rss/">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+
+<!-- dataLayer setup -->
+<script>
+window.dataLayer = window.dataLayer || [];
+</script>
+<!-- End dataLayer setup -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5D6RKKP');</script>
+<!-- End Google Tag Manager -->
+
+
+<meta name="google-site-verification" content="b4tITLzEeeZGEpvD4mGNf3khKM4fvqejQaz9SYBQP8E">
+
+        
+        
+    </head>
+
+    
+        <body class="home-template">
+    
+        <div class="site-wrapper">
+            <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        
+<form id="search-form" data-test-label="search-bar">
+    <div role="search" class="searchbox__wrapper">
+        <label class="fcc_sr_only" for="search-input">
+            Search
+        </label>
+        <input type="search" placeholder="
+    Search 10,900+ tutorials
+" id="search-input">
+        <button type="submit" class="ais-SearchBox-submit">
+            <svg class="ais-SearchBox-submitIcon" xmlns="https://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40">
+    <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path>
+</svg>
+
+            <span class="fcc_sr_only">Submit your search query</span>
+        </button>
+        <div id="dropdown-container"></div>
+    </div>
+</form>
+
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news/" data-test-label="site-nav-logo"><img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp.org"></a>
+    </div>
+    <div class="site-nav-right">
+        <div class="nav-group">
+            <a class="nav-forum" id="nav-forum" rel="noopener noreferrer" href="https://forum.freecodecamp.org/" target="_blank" data-test-label="forum-button">Forum</a>
+            <a class="toggle-button-nav" id="nav-donate" rel="noopener noreferrer" href="https://www.freecodecamp.org/donate/" target="_blank" data-test-label="donate-button">Donate</a>
+        </div>
+    </div>
+</nav>
+
+
+            
+            <a class="banner" id="banner" data-test-label="banner" rel="noopener noreferrer" target="_blank">
+    <p id="banner-text"></p>
+</a>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("banner"),t=document.getElementById("banner-text");isAuthenticated?(t.innerHTML="Support our charity and our mission. <span>Donate to freeCodeCamp.org</span>.",e.href="https://www.freecodecamp.org/donate",e.setAttribute("text-variation","authenticated")):isDonor?(t.innerHTML="Thank you for supporting freeCodeCamp through <span>your donations</span>.",e.href="https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/",e.setAttribute("text-variation","donor")):(t.innerHTML="Learn to code — <span>free 3,000-hour curriculum</span>",e.href="https://www.freecodecamp.org/",e.setAttribute("text-variation","default"))}));</script>
+
+
+            <div id="error-message"></div>
+
+            
+    <main id="site-main" class="post-template site-main outer">
+        <div class="inner ad-layout">
+            <article class="post-full post ">
+                <header class="post-full-header">
+                    <section class="post-full-meta">
+                        <time class="post-full-meta-date" datetime="Thu Sep 08 2022 16:31:20 GMT+0000 (Coordinated Universal Time)">
+                            September 8, 2022
+                        </time>
+                        
+                            <span class="date-divider">/</span>
+                            <a dir="ltr" href="/news/tag/machine-learning/">
+                                #Machine Learning
+                            </a>
+                        
+                    </section>
+                    <h1 class="post-full-title">How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer</h1>
+                </header>
+                <div class="post-full-author-header" data-test-label="author-header-no-bio">
+                    
+                        
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+ 
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="/news/author/yannawut/" data-test-label="profile-link">
+                    
+                        Yannawut Kimnaruk
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                        
+                    
+                </div>
+                
+                    <figure class="post-full-image">
+                        
+    <picture>
+      <source media="(max-width: 700px)" sizes="1px" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w">
+      <source media="(min-width: 701px)" sizes="(max-width: 800px) 400px, (max-width: 1170px) 700px, 1400px" srcset="https://www.freecodecamp.org/news/content/images/size/w300/2022/09/Python-Power-BI-1.png 300w, https://www.freecodecamp.org/news/content/images/size/w600/2022/09/Python-Power-BI-1.png 600w, https://www.freecodecamp.org/news/content/images/size/w1000/2022/09/Python-Power-BI-1.png 1000w, https://www.freecodecamp.org/news/content/images/size/w2000/2022/09/Python-Power-BI-1.png 2000w">
+      <img onerror="this.style.display='none'" src="https://www.freecodecamp.org/news/content/images/size/w2000/2022/09/Python-Power-BI-1.png" alt="How to Improve Machine Learning Code Quality with Scikit-learn Pipeline and ColumnTransformer" ,="" width="2245" height="1587">
+    </picture>
+  
+                    </figure>
+                
+                <section class="post-full-content">
+                    <div class="post-and-sidebar">
+                        <section class="post-content " data-test-label="post-content">
+                            
+<p>When you're working on a machine learning project, the most tedious steps are often data cleaning and preprocessing. Especially when you're working in a Jupyter Notebook, running code in many cells can be confusing.</p><p>The Scikit-learn library has tools called Pipeline and ColumnTransformer that can really make your life easier. Instead of transforming the dataframe step by step, the pipeline combines all transformation steps. You can get the same result with less code. It's also easier to understand data workflows and modify them for other projects.</p><p>This article will show you step by step how to create the machine learning pipeline, starting with an easy one and working up to a more complicated one. </p><p>If you are familiar with the Scikit-learn pipeline and ColumnTransformer, you can jump directly to the part you want to learn more about.</p><h2 id="table-of-contents">Table of Contents</h2><ul><li><a href="#what-is-the-scikit-learn-pipeline">What is the Scikit-learn Pipeline?</a></li><li><a href="#what-is-the-scikit-learn-columntransformer">What is the Scikit-learn ColumnTransformer?</a></li><li><a href="#what-s-the-difference-between-the-pipeline-and-columntransformer">What's the Difference between the Pipeline and ColumnTransformer?</a></li><li><a href="#how-to-create-a-pipeline">How to Create a Pipeline</a></li><li><a href="#how-to-find-the-best-hyperparameter-and-data-preparation-method">How to Find the Best Hyperparameter and Data Preparation Method</a></li><li><a href="#how-to-add-custom-transformations-and-find-the-best-machine-learning-model">How to Add Custom Transformations</a></li><li><a href="#how-to-add-custom-transformations-and-find-the-best-machine-learning-model">How to Choose the Best Machine Learning Model</a></li></ul><h2 id="what-is-the-scikit-learn-pipeline">What is the Scikit-learn Pipeline?</h2><p>Before training a model, you should split your data into a training set and a test set. Each dataset will go through the data cleaning and preprocessing steps before you put it in a machine learning model. </p><p>It's not efficient to write repetitive code for the training set and the test set. This is when the scikit-learn pipeline comes into play.</p><p>Scikit-learn pipeline is an elegant way to create a machine learning model training workflow. It looks like this:</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/1308/1*3cbyBR99wFWklU6Sy85NEA.png" class="kg-image" alt="1*3cbyBR99wFWklU6Sy85NEA" width="654" height="243" loading="lazy"><figcaption>Pipeline illustration</figcaption></figure><p>First of all, imagine that you can create only one pipeline in which you can input any data. Those data will be transformed into an appropriate format before model training or prediction. </p><p>The Scikit-learn pipeline is a tool that links all steps of data manipulation together to create a pipeline. It will shorten your code and make it easier to read and adjust. (You can even visualize your pipeline to see the steps inside.) It's also easier to perform GridSearchCV without data leakage from the test set.</p><h2 id="what-is-the-scikit-learn-columntransformer">What is the Scikit-learn ColumnTransformer?</h2><p>As stated on the scikit-learn website, this is the purpose of ColumnTransformer:</p><blockquote>"This estimator allows different columns or column subsets of the input to be transformed separately and the features generated by each transformer will be concatenated to form a single feature space. <br><br>This is useful for heterogeneous or columnar data, to combine several feature extraction mechanisms or transformations into a single transformer."</blockquote><p>In short, ColumnTransformer will transform each group of dataframe columns separately and combine them later. This is useful in the data preprocessing process.</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://www.freecodecamp.org/news/content/images/2022/09/image-207.png" class="kg-image" alt="image-207" srcset="https://www.freecodecamp.org/news/content/images/size/w600/2022/09/image-207.png 600w, https://www.freecodecamp.org/news/content/images/2022/09/image-207.png 930w" width="930" height="392" loading="lazy"><figcaption>ColumnTransformer Illustration</figcaption></figure><h2 id="what-s-the-difference-between-the-pipeline-and-columntransformer">What's the Difference between the Pipeline and ColumnTransformer?</h2><p>There is a big difference between Pipeline and ColumnTransformer that you should understand.</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/1190/1*I0F-ALOL8J8f6V33CDKyrA.png" class="kg-image" alt="1*I0F-ALOL8J8f6V33CDKyrA" width="595" height="444" loading="lazy"><figcaption>Pipeline VS ColumnTransformer</figcaption></figure><p><strong>You use the pipeline </strong>for multiple transformations of the same columns.</p><p>On the other hand, <strong>you use the <strong>ColumnTransformer</strong></strong> to transform each column set separately before combining them later.</p><p>Alright, with that out of the way, let’s start coding!!</p><h2 id="how-to-create-a-pipeline">How to Create a Pipeline</h2><h3 id="get-the-dataset">Get the Dataset</h3><p>You can download the data I used in this article from this <a href="https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists?datasetId=1019790&amp;sortBy=voteCount&amp;select=aug_train.csv">kaggle dataset</a>. Here's a sample of the dataset:</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://www.freecodecamp.org/news/content/images/2022/09/image-210.png" class="kg-image" alt="image-210" srcset="https://www.freecodecamp.org/news/content/images/size/w600/2022/09/image-210.png 600w, https://www.freecodecamp.org/news/content/images/size/w1000/2022/09/image-210.png 1000w, https://www.freecodecamp.org/news/content/images/size/w1600/2022/09/image-210.png 1600w, https://www.freecodecamp.org/news/content/images/2022/09/image-210.png 2086w" sizes="(min-width: 1200px) 1200px" width="2086" height="146" loading="lazy"><figcaption>Dataset sample</figcaption></figure><p>I wrote an article exploring the data from this dataset which you can find <a href="https://medium.com/mlearning-ai/data-analysis-job-change-of-data-scientist-685f3de0a983">here if you're interested.</a></p><p>In short, this dataset contains information about job candidates and their decision about whether they want to change jobs or not. The dataset has both numerical and categorical columns.</p><p>Our goal is to predict whether a candidate will change jobs based on their information. This is a classification task.</p><h2 id="data-preprocessing-plan">Data Preprocessing Plan</h2><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/1400/1*ZT7S2SuhMd4Zazb2lVWmcw.png" class="kg-image" alt="1*ZT7S2SuhMd4Zazb2lVWmcw" width="898" height="768" loading="lazy"></figure><p>Note that I skipped categorical feature encoding for the simplicity of this article.</p><h3 id="here-are-the-steps-we-ll-follow-">Here are the steps we'll follow:</h3><ol><li>Import data and encoding</li><li>Define sets of columns to be transformed in different ways</li><li>Split data to train and test sets</li><li>Create pipelines for numerical and categorical features</li><li>Create ColumnTransformer to apply pipeline for each column set</li><li>Add a model to a final pipeline</li><li>Display the pipeline</li><li>Pass data through the pipeline</li><li>(Optional) Save the pipeline</li></ol><h3 id="step-1-import-and-encode-the-data">Step 1: Import and Encode the Data</h3><p>After downloading the data, you can import it using Pandas like this:</p><pre><code class="language-Python">import pandas as pd
+
+df = pd.read_csv("aug_train.csv")</code></pre><p>Then, encode the ordinal feature using mapping to transform categorical features into numerical features (since the model takes only numerical input).</p><pre><code class="language-Python"># Making Dictionaries of ordinal features
+
+relevent_experience_map = {
+    'Has relevent experience':  1,
+    'No relevent experience':    0
+}
+
+experience_map = {
+    '&lt;1'      :    0,
+    '1'       :    1, 
+    '2'       :    2, 
+    '3'       :    3, 
+    '4'       :    4, 
+    '5'       :    5,
+    '6'       :    6,
+    '7'       :    7,
+    '8'       :    8, 
+    '9'       :    9, 
+    '10'      :    10, 
+    '11'      :    11,
+    '12'      :    12,
+    '13'      :    13, 
+    '14'      :    14, 
+    '15'      :    15, 
+    '16'      :    16,
+    '17'      :    17,
+    '18'      :    18,
+    '19'      :    19, 
+    '20'      :    20, 
+    '&gt;20'     :    21
+} 
+    
+last_new_job_map = {
+    'never'        :    0,
+    '1'            :    1, 
+    '2'            :    2, 
+    '3'            :    3, 
+    '4'            :    4, 
+    '&gt;4'           :    5
+}
+
+# Transform categorical features into numerical features
+
+def encode(df_pre):
+    df_pre.loc[:,'relevent_experience'] = df_pre['relevent_experience'].map(relevent_experience_map)
+    df_pre.loc[:,'last_new_job'] = df_pre['last_new_job'].map(last_new_job_map)
+    df_pre.loc[:,'experience'] = df_pre['experience'].map(experience_map)
+  
+    return df_pre
+
+df = encode(df)</code></pre><h3 id="step-2-define-sets-of-columns-to-be-transformed-in-different-ways">Step 2: Define Sets of Columns to be Transformed in Different Ways</h3><p>Numerical and categorical data should be transformed in different ways. So I define <code>num_col</code> for numerical columns (numbers) and <code>cat_cols</code> for categorical columns.</p><pre><code class="language-python">num_cols = ['city_development_index','relevent_experience', 'experience','last_new_job', 'training_hours']
+
+cat_cols = ['gender', 'enrolled_university', 'education_level', 'major_discipline', 'company_size', 'company_type']</code></pre><h3 id="step-3-create-pipelines-for-numerical-and-categorical-features">Step 3: Create Pipelines for Numerical and Categorical Features</h3><p>The syntax of the pipeline is:</p><pre><code class="language-Python">Pipeline(steps = [(‘step name’, transform function), …])</code></pre><p>For <strong>numerical features</strong>, I perform the following actions:</p><ol><li>SimpleImputer to fill in the missing values with the mean of that column.</li><li>MinMaxScaler to scale the value to range from 0 to 1 (this will affect regression performance).</li></ol><p>For <strong>categorical features</strong>, I perform the following actions: </p><ol><li>SimpleImputer to fill in the missing values with the most frequency value of that column.</li><li>OneHotEncoder to split to many numerical columns for model training. (handle_unknown=’ignore’ is specified to prevent errors when it finds an unseen category in the test set)</li></ol><pre><code class="language-Python">from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+from sklearn.pipeline import Pipeline
+
+num_pipeline = Pipeline(steps=[
+    ('impute', SimpleImputer(strategy='mean')),
+    ('scale',MinMaxScaler())
+])
+cat_pipeline = Pipeline(steps=[
+    ('impute', SimpleImputer(strategy='most_frequent')),
+    ('one-hot',OneHotEncoder(handle_unknown='ignore', sparse=False))
+])</code></pre><h3 id="step-4-create-columntransformer-to-apply-the-pipeline-for-each-column-set">Step 4: Create ColumnTransformer to Apply the Pipeline for Each Column Set</h3><p>The syntax of the ColumnTransformer is:</p><pre><code class="language-Python">ColumnTransformer(transformers=[(‘step name’, transform function,cols), …])</code></pre><p>Pass numerical columns through the numerical pipeline and pass categorical columns through the categorical pipeline created in step 3.</p><p>remainder=’drop’ is specified to ignore other columns in a dataframe.</p><p>n_job = -1 means that we'll be using all processors to run in parallel.</p><pre><code class="language-Python">from sklearn.compose import ColumnTransformer
+
+col_trans = ColumnTransformer(transformers=[
+    ('num_pipeline',num_pipeline,num_cols),
+    ('cat_pipeline',cat_pipeline,cat_cols)
+    ],
+    remainder='drop',
+    n_jobs=-1)</code></pre><h3 id="step-5-add-a-model-to-the-final-pipeline">Step 5: Add a Model to the Final Pipeline</h3><p>I'm using the logistic regression model in this example.</p><p>Create a new pipeline to commingle the ColumnTransformer in step 4 with the logistic regression model. I use a pipeline in this case because the entire dataframe must pass the ColumnTransformer step and modeling step, respectively.</p><pre><code class="language-Python">from sklearn.linear_model import LogisticRegression
+
+clf = LogisticRegression(random_state=0)
+clf_pipeline = Pipeline(steps=[
+    ('col_trans', col_trans),
+    ('model', clf)
+])</code></pre><h3 id="step-6-display-the-pipeline">Step 6: Display the Pipeline</h3><p>The syntax for this is <code>display(pipeline name)</code>:</p><pre><code class="language-Python">from sklearn import set_config
+
+set_config(display='diagram')
+display(clf_pipeline)</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/560/1*ZAQ6T65iADOmFx1eCJsjDQ.png" class="kg-image" alt="1*ZAQ6T65iADOmFx1eCJsjDQ" width="280" height="213" loading="lazy"><figcaption>Displayed pipeline</figcaption></figure><p>You can click on the displayed image to see the details of each step. <br>How convenient!</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/1400/1*gahdAdZlFSICnQmiqbQYvg.png" class="kg-image" alt="1*gahdAdZlFSICnQmiqbQYvg" width="951" height="460" loading="lazy"><figcaption>Expanded displayed pipeline</figcaption></figure><h3 id="step-7-split-the-data-into-train-and-test-sets">Step 7: Split the Data into Train and Test Sets</h3><p>Split 20% of the data into a test set like this:</p><pre><code class="language-Python">from sklearn.model_selection import train_test_split
+
+X = df[num_cols+cat_cols]
+y = df['target']
+# train test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y)</code></pre><p>I will fit the pipeline for the train set and use that fitted pipeline for the test set to prevent data leakage from the test set to the model.</p><h3 id="step-8-pass-data-through-the-pipeline">Step 8: Pass Data through the Pipeline</h3><p>Here's the syntax for this:</p><pre><code class="language-Python">pipeline_name.fit, pipeline_name.predict, pipeline_name.score</code></pre><p><code>pipeline.fit</code> passes data through a pipeline. It also fits the model.</p><p><code>pipeline.predict</code> uses the model trained when <code>pipeline.fit</code>s to predict new data.</p><p><code>pipeline.score</code> gets a score of the model in the pipeline (accuracy of logistic regression in this example).</p><pre><code class="language-Python">clf_pipeline.fit(X_train, y_train)
+# preds = clf_pipeline.predict(X_test)
+score = clf_pipeline.score(X_test, y_test)
+print(f"Model score: {score}") # model accuracy</code></pre><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/1400/1*Y5liijw_WH1kRMnO4S3ung.png" class="kg-image" alt="1*Y5liijw_WH1kRMnO4S3ung" width="854" height="20" loading="lazy"></figure><h3 id="-optional-step-9-save-the-pipeline">(Optional) Step 9: Save the Pipeline</h3><p>The syntax for this is <code>joblib.dumb</code>.</p><p>Use the joblib library to save the pipeline for later use, so you don’t need to create and fit the pipeline again. When you want to use a saved pipeline, just load the file using joblib.load like this:</p><pre><code class="language-Python">import joblib
+
+# Save pipeline to file "pipe.joblib"
+joblib.dump(clf_pipeline,"pipe.joblib")
+
+# Load pipeline when you want to use
+same_pipe = joblib.load("pipe.joblib")</code></pre><h2 id="how-to-find-the-best-hyperparameter-and-data-preparation-method">How to Find the Best Hyperparameter and Data Preparation Method</h2><p>A pipeline does not only make your code tidier, it can also help you optimize hyperparameters and data preparation methods.</p><h3 id="here-s-what-we-ll-cover-in-this-section-">Here's what we'll cover in this section:</h3><ul><li>How to find the changeable pipeline parameters</li><li>How to find the best hyperparameter sets: Add a pipeline to Grid Search</li><li>How to find the best data preparation method: Skip a step in a pipeline</li><li>How to Find the best hyperparameter sets and the best data preparation method</li></ul><h3 id="how-to-find-the-changeable-pipeline-parameters">How to Find the Changeable Pipeline Parameters</h3><p>First, let’s see the list of parameters that can be adjusted.</p><pre><code class="language-Python">clf_pipeline.get_params()</code></pre><p>The result can be very long. Take a deep breath and continue reading.</p><p>The first part is just about the steps of the pipeline.</p><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/1400/1*JWw_1l68o9z_D9ptmvIIMA.png" class="kg-image" alt="1*JWw_1l68o9z_D9ptmvIIMA" width="989" height="754" loading="lazy"></figure><p>Below the first part you'll find what we are interested in: a list of parameters that we can adjust.</p><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/926/1*NCkmLiyit676K3M-HfEbnw.png" class="kg-image" alt="1*NCkmLiyit676K3M-HfEbnw" width="463" height="407" loading="lazy"></figure><p>The format is <strong><strong>step1_step2_…_parameter</strong></strong>.</p><p>For example <strong><strong>col_trans</strong></strong>_<strong><strong>cat_pipeline</strong></strong>_<strong><strong>one-hot</strong></strong>_<strong><strong>sparse</strong></strong> means parameter sparse of the one-hot step.</p><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/876/1*ZITc6M2sB8Qxzr5BCnBMHQ.png" class="kg-image" alt="1*ZITc6M2sB8Qxzr5BCnBMHQ" width="438" height="333" loading="lazy"></figure><p>You can change parameters directly using set_param.</p><pre><code class="language-Python">clf_pipeline.set_params(model_C = 10)</code></pre><h3 id="how-to-find-the-best-hyperparameter-sets-add-a-pipeline-to-grid-search">How to Find the Best Hyperparameter Sets: Add a Pipeline to Grid Search</h3><p>Grid Search is a method you can use to perform hyperparameter tuning. It helps you find the optimum parameter sets that yield the highest model accuracy.</p><h4 id="set-the-tuning-parameters-and-their-range-">Set the tuning parameters and their range.</h4><p>Create a dictionary of tuning parameters (hyperparameters)</p><pre><code class="language-Python">{ ‘tuning parameter’ : ‘possible value’, … }</code></pre><p>In this example, I want to find the best penalty type and C of a logistic regression model.</p><pre><code class="language-Python">grid_params = {'model__penalty' : ['none', 'l2'],
+               'model__C' : np.logspace(-4, 4, 20)}</code></pre><h4 id="add-the-pipeline-to-grid-search">Add the pipeline to Grid Search</h4><pre><code class="language-Python">GridSearchCV(model, tuning parameter, …)</code></pre><p>Our pipeline has a model step as the final step, so we can input the pipeline directly to the GridSearchCV function.</p><pre><code class="language-Python">from sklearn.model_selection import GridSearchCV
+
+gs = GridSearchCV(clf_pipeline, grid_params, cv=5, scoring='accuracy')
+gs.fit(X_train, y_train)
+
+print("Best Score of train set: "+str(gs.best_score_))
+print("Best parameter set: "+str(gs.best_params_))
+print("Test Score: "+str(gs.score(X_test,y_test)))</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/1252/1*JP64DvryL62BV2Z8ctyVXw.png" class="kg-image" alt="1*JP64DvryL62BV2Z8ctyVXw" width="626" height="58" loading="lazy"><figcaption>Result of Grid Search</figcaption></figure><p>After setting Grid Search, you can fit Grid Search with the data and see the results. Let's see what the code is doing:</p><ul><li><code>.fit</code>: fits the model and tries all sets of parameters in the tuning parameter dictionary</li><li><code>.best_score_</code>: the highest accuracy across all sets of parameters</li><li><code>.best_params_</code>: The set of parameters that yield the best score</li><li><code>.score(X_test,y_test)</code>: The score when trying the best model with the test set.</li></ul><p>You can read more about GridSearchCV in the documentation <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" rel="noopener ugc nofollow">here</a>.</p><h3 id="how-to-find-the-best-data-preparation-method-skip-a-step-in-a-pipeline">How to Find the Best Data Preparation Method: Skip a Step in a Pipeline</h3><p>Finding the best data preparation method can be difficult without a pipeline since you have to create so many variables for many data transformation cases.</p><p>With the pipeline, we can create data transformation steps in the pipeline and perform a grid search to find the best step. A grid search will select which step to skip and compare the result of each case.</p><h4 id="how-to-adjust-the-current-pipeline-a-little">How to adjust the current pipeline a little</h4><p>I want to know which scaling method will work best for my data between MinMaxScaler and StandardScaler.</p><p>I add a step StandardScaler in the num_pipeline. The rest doesn't change.</p><pre><code class="language-Python">from sklearn.preprocessing import StandardScaler
+
+num_pipeline2 = Pipeline(steps=[
+    ('impute', SimpleImputer(strategy='mean')),
+    ('minmax_scale', MinMaxScaler()),
+    ('std_scale', StandardScaler()),
+])
+
+col_trans2 = ColumnTransformer(transformers=[
+    ('num_pipeline',num_pipeline2,num_cols),
+    ('cat_pipeline',cat_pipeline,cat_cols)
+    ],
+    remainder='drop',
+    n_jobs=-1)
+    
+clf_pipeline2 = Pipeline(steps=[
+    ('col_trans', col_trans2),
+    ('model', clf)
+])</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/526/1*K1pdg8EFtGLIhNSEUQ0DsA.png" class="kg-image" alt="1*K1pdg8EFtGLIhNSEUQ0DsA" width="263" height="225" loading="lazy"><figcaption>Adjusted pipeline</figcaption></figure><h3 id="how-to-perform-grid-search">How to Perform Grid Search</h3><p>In grid search parameters, specify the steps you want to skip and set their value to <strong><strong>passthrough</strong></strong>.</p><p>Since MinMaxScaler and StandardScaler should not perform at the same time, I will use <strong><strong>a list of dictionaries</strong></strong> for the grid search parameters.</p><pre><code class="language-Python">[{case 1},{case 2}]</code></pre><p>If using a list of dictionaries, grid search will perform a combination of every parameter in case 1 until complete. Then, it will perform a combination of every parameter in case 2. So there is no case where MinMaxScaler and StandardScaler are used together.</p><pre><code class="language-Python">grid_step_params = [{'col_trans__num_pipeline__minmax_scale': ['passthrough']},
+                    {'col_trans__num_pipeline__std_scale': ['passthrough']}]</code></pre><p>Perform Grid Search and print the results (like a normal grid search).</p><pre><code class="language-Python">gs2 = GridSearchCV(clf_pipeline2, grid_step_params, scoring='accuracy')
+gs2.fit(X_train, y_train)
+
+print("Best Score of train set: "+str(gs2.best_score_))
+print("Best parameter set: "+str(gs2.best_params_))
+print("Test Score: "+str(gs2.score(X_test,y_test)))</code></pre><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/1354/1*u-TK9RhHn0eSIRbtEUdWsQ.png" class="kg-image" alt="1*u-TK9RhHn0eSIRbtEUdWsQ" width="677" height="58" loading="lazy"></figure><p>The best case is minmax_scale : ‘passthrough’, so StandardScaler is the best scaling method for this data.</p><h3 id="how-to-find-the-best-hyperparameter-sets-and-the-best-data-preparation-method">How to Find the Best Hyperparameter Sets and the Best Data Preparation Method</h3><p>You can find the best hyperparameter sets and the best data preparation method by adding tuning parameters to the dictionary of each case of the data preparation method.</p><pre><code class="language-Python">grid_params = {'model__penalty' : ['none', 'l2'],
+               'model__C' : np.logspace(-4, 4, 20)}
+               
+grid_step_params = [{**{'col_trans__num_pipeline__minmax_scale': ['passthrough']}, **grid_params},
+                    {**{'col_trans__num_pipeline__std_scale': ['passthrough']}, **grid_params}]</code></pre><p>grid_params will be added to both case 1 (skip MinMaxScaler) and case 2 (skip StandardScalerand).</p><pre><code class="language-Python"># You can merge dictionary using the syntax below.
+
+merge_dict = {**dict_1,**dict_2}</code></pre><p>Perform Grid Search and print the results (like a normal grid search).</p><pre><code class="language-Python">gs3 = GridSearchCV(clf_pipeline2, grid_step_params2, scoring='accuracy')
+gs3.fit(X_train, y_train)
+
+print("Best Score of train set: "+str(gs3.best_score_))
+print("Best parameter set: "+str(gs3.best_params_))
+print("Test Score: "+str(gs3.score(X_test,y_test)))</code></pre><figure class="kg-card kg-image-card kg-width-wide"><img src="https://miro.medium.com/max/1400/1*fLcVD6j9m2QcdkkYpoJOjA.png" class="kg-image" alt="1*fLcVD6j9m2QcdkkYpoJOjA" width="962" height="73" loading="lazy"></figure><p>You can find the best parameter set using .best_params_. As minmax_scale : ‘passthrough’, so StandardScaler is the best scaling method for this data.</p><p>You can show all grid search cases using .cv_results_:</p><pre><code class="language-Python">pd.DataFrame(gs3.cv_results_)</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/1400/1*Ddwx3CZ1k3kfEXYG2pGkMw.png" class="kg-image" alt="1*Ddwx3CZ1k3kfEXYG2pGkMw" width="964" height="490" loading="lazy"><figcaption>GridSearch result</figcaption></figure><p>There are 80 cases for this example. There's running time and accuracy of each case for you to consider, since sometimes we may select the fastest model with acceptable accuracy instead of the highest accuracy one.</p><h2 id="how-to-add-custom-transformations-and-find-the-best-machine-learning-model">How to Add Custom Transformations and Find the Best Machine Learning Model</h2><p>Searching for the best machine learning model can be a time-consuming task. The pipeline can make this task much more convenient so that you can shorten the model training and evaluation loop.</p><h3 id="here-s-what-we-ll-cover-in-this-part-">Here's what we'll cover in this part:</h3><ul><li>Add a custom transformation</li><li>Find the best machine learning model</li></ul><h3 id="how-to-add-a-custom-transformation">How to Add a Custom Transformation</h3><p>Apart from standard data transformation functions such as MinMaxScaler from sklearn, you can also create your own transformation for your data.</p><p>In this example, I will create a class method to encode ordinal features using mapping to transform categorical features into numerical ones. In simple words, we'll change data from text to numbers.</p><p>First we'll do the required data processing before regression model training.</p><pre><code class="language-Python">from sklearn.base import TransformerMixin
+
+class Encode(TransformerMixin):
+    
+    def __init__(self):
+        # Making Dictionaries of ordinal features
+        self.rel_exp_map = {
+            'Has relevent experience': 1,
+            'No relevent experience': 0}
+            
+    def fit(self, df, y = None):
+    	return self
+        
+    def transform(self, df, y = None):
+        df_pre = df.copy()
+        df_pre.loc[:,'rel_exp'] = df_pre['rel_exp']\
+                               .map(self.rel_exp_map)
+        return df_pre</code></pre><p>Here's an explanation of what's going on in this code:</p><ul><li>Create a class named Encode which inherits the base class called TransformerMixin from sklearn.</li><li>Inside the class, there are 3 necessary methods: <code>__init__</code>, <code>fit</code>, and <code>transform</code></li><li><strong><strong><code>__init__</code> </strong></strong>will be called when a pipeline is created. It is where we define variables inside the class. I created a variable ‘rel_exp_map’ which is a dictionary that maps categories to numbers.</li><li><strong><strong><code>fit</code></strong></strong> will be called when fitting the pipeline. I left it blank for this case.</li><li><strong><strong><code>transform</code></strong></strong> will be called when a pipeline transform is used. This method requires a dataframe (df) as an input while y is set to be None by default (It is forced to have y argument but I will not use it anyway).</li><li>In <strong><strong>transform</strong></strong>, the dataframe column ‘rel_exp’ will be mapped with the rel_exp_map.</li></ul><p>Note that the <code>\</code> is only to continue the code to a new line.</p><p>Next, add this Encode class as a pipeline step.</p><pre><code class="language-Python">pipeline = Pipeline(steps=[
+    ('Encode', Encode()),
+    ('col_trans', col_trans),
+    ('model', LogisticRegression())
+])</code></pre><p>Then you can fit, transform, or grid search the pipeline like a normal pipeline.</p><h3 id="how-to-find-the-best-machine-learning-model">How to Find the Best Machine Learning Model</h3><p>The first solution that came to my mind was adding many model steps in a pipeline and skipping a step by changing the step value to ‘passthrough’ in the grid search. This is like what we did when finding the best data preparation method.</p><pre><code class="language-Python">temp_pipeline = Pipeline(steps=[
+    ('model1', LogisticRegression()),
+    ('model2',SVC(gamma='auto'))
+])</code></pre><p>But I saw an error like this:</p><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/700/1*2CGj8aBvcPbxDw_p9tpijg.png" class="kg-image" alt="1*2CGj8aBvcPbxDw_p9tpijg" width="700" height="33" loading="lazy"><figcaption>Error when there are 2 classifiers in 1 pipeline</figcaption></figure><p>Ah ha – you can’t have two classification models in a pipeline!</p><p>The solution to this problem is to create a custom transformation that receives a model as an input and performs grid search to find the best model.</p><h3 id="here-are-the-steps-we-ll-follow--1">Here are the steps we'll follow:</h3><ol><li>Create a class that receives a model as an input</li><li>Add the class in step 1 to a pipeline</li><li>Perform grid search</li><li>Print grid search results as a table</li></ol><h3 id="step-1-create-a-class-that-receives-a-model-as-an-input">Step 1: Create a class that receives a model as an input</h3><pre><code class="language-Python">from sklearn.base import BaseEstimator
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+
+class ClfSwitcher(BaseEstimator):
+
+def __init__(self, estimator = LogisticRegression()):
+        self.estimator = estimator
+        
+def fit(self, X, y=None, **kwargs):
+        self.estimator.fit(X, y)
+        return self
+        
+def predict(self, X, y=None):
+        return self.estimator.predict(X)
+        
+def predict_proba(self, X):
+        return self.estimator.predict_proba(X)
+        
+def score(self, X, y):
+        return self.estimator.score(X, y)</code></pre><p><strong><strong>Code explanation:</strong></strong></p><ul><li>Create a class named <code>ClfSwitcher</code> which inherits the base class called BaseEstimator from sklearn.</li><li>Inside the class, there are five necessary methods like <code>classification model: __init__</code>, <code>fit</code>, <code>predict</code>, <code>predict_proba</code> and <code>score</code></li><li><strong><strong><code>__init__</code> </strong></strong>receives an estimator (model) as an input. I stated LogisticRegression() as a default model.</li><li><strong><strong><code>fit</code></strong></strong> is for model fitting. There's no return value.</li><li>The other methods are to simulate the model. It will return the result as if it's the model itself.</li></ul><h3 id="step-2-add-the-class-in-step-1-to-a-pipeline">Step 2: Add the class in step 1 to a pipeline</h3><pre><code class="language-Python">clf_pipeline = Pipeline(steps=[
+    ('Encode', Encode()),
+    ('col_trans', col_trans),
+    ('model', ClfSwitcher())
+])</code></pre><h3 id="step-3-perform-grid-search">Step 3: Perform Grid search</h3><p>There are 2 cases using different classification models in grid search parameters, including logistic regression and support vector machine.</p><pre><code class="language-Python">from sklearn.model_selection import GridSearchCV
+
+grid_params = [
+    {'model__estimator': [LogisticRegression()]},
+    {'model__estimator': [SVC(gamma='auto')]}
+]
+
+gs = GridSearchCV(clf_pipeline, grid_params, scoring='accuracy')
+gs.fit(X_train, y_train)
+
+print("Best Score of train set: "+str(gs.best_score_))
+print("Best parameter set: "+str(gs.best_params_))
+print("Test Score: "+str(gs.score(X_test,y_test)))</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/700/1*4rxzC3Wv0y9QOw0G4iHxog.png" class="kg-image" alt="1*4rxzC3Wv0y9QOw0G4iHxog" width="700" height="89" loading="lazy"><figcaption>Grid Search Result</figcaption></figure><p>The result shows that logistic regression yields the best result.</p><h3 id="step-4-print-grid-search-results-as-a-table">Step 4: Print grid search results as a table</h3><pre><code class="language-Python">pd.DataFrame(gs.cv_results_)</code></pre><figure class="kg-card kg-image-card kg-width-wide kg-card-hascaption"><img src="https://miro.medium.com/max/700/1*bzCWW5AJ3Jb2c5fdIR78LA.png" class="kg-image" alt="1*bzCWW5AJ3Jb2c5fdIR78LA" width="700" height="94" loading="lazy"><figcaption>Grid Search Result Table</figcaption></figure><p>Logistic regression has a little higher accuracy than SVC but is much faster (less fit time).</p><p>Remember that you can apply different data preparation methods for each model as well.</p><h2 id="conclusion">Conclusion</h2><p>You can implement the Scikit-learn pipeline and ColumnTransformer from the data cleaning to the data modeling steps to make your code neater. </p><p>You can also find the best hyperparameter, data preparation method, and machine learning model with grid search and the passthrough keyword.</p><p>You can find my code in this <a href="https://github.com/Yannawut/ML_Pipeline">GitHub</a></p>
+
+                        </section>
+                        
+                
+            </article>
+        </div>
+    </main>
+
+
+            
